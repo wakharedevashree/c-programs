@@ -1,0 +1,123 @@
+#include <iostream>
+using namespace std;
+struct Book{
+    int book_no;
+    string book_name;
+};
+
+
+    void Linear(Book a[],int n){
+         
+      int i,key,flag=0;
+      cout<<"\nLinear Search\n"<<endl;
+              cout<<"Enter Book No  :";
+     cin>>key;
+               for(i=0;i<n;i++){
+                if(key==a[i].book_no){
+                    flag=1;
+                    break;
+                }
+               }
+               if(flag==1){
+                cout<<"Book no" <<key <<":"<<a[i].book_name<<" is found at" <<i<<" position"<<endl;
+               }
+               else{
+                cout<<"Book no is not found"<<endl;
+               }
+}
+void Binary(Book a[],int n){
+       
+    int i,key,flag=0,low,high,mid;
+    cout<<"Binary Search"<<endl;
+               low=0;
+               high=n-1;
+               mid=(low+high)/2;
+              cout<<"Enter Book no :";
+     cin>>key;
+               while(low<=high){
+                mid=(low+high)/2;
+                if(a[mid].book_no==key){
+                    flag=1;
+                    break;
+                }
+                else if(a[mid].book_no<key){
+                    low=mid+1;
+                }
+                else{
+                    high=mid-1;
+                }
+               }
+               if(flag==1){
+               cout<<"Book no " <<key <<":"<<a[mid].book_name<<" is found at" <<mid<<" position"<<endl;
+               }
+               else{
+                cout<<"Book is not found"<<endl;
+               }
+}
+
+void Sorting(Book a[],int n){
+    int i,j;
+    for(i=0;i<n;i++){
+        for(j=0;j<n-i-1;j++){
+             if (a[j].book_no > a[j + 1].book_no) {
+                Book temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+        }
+    }
+    cout<<"Book number is sorted:"<<endl;
+    for(i=0;i<n;i++){
+        cout<<a[i].book_no<<" : "<<a[i].book_name<<endl;
+    }
+}
+
+    
+
+int main(){
+    Book a[20];
+    int n,i,ch,k;
+    cout<<"Enter No of Books";
+    cin>>n;
+    cout<<"-----------Books-----------"<<endl;
+    for(i=0;i<n;i++){
+        cout<<"Enter Book No:";
+        cin>>a[i].book_no;
+        cout<<"Enter Book Name:";
+        cin>>a[i].book_name;
+    }
+     for(i=0;i<n;i++){
+         cout<<"Book No:"<<a[i].book_no<<"\tBook Name:"<<a[i].book_name<<endl;
+     }
+    do{
+        cout<<"1.Searching\n2.Sorting\nEnter your Choice:";
+        cin>>ch;
+        switch(ch){
+            case 1:cout<<"Searching"<<endl;
+                   do{
+                       cout<<"1.Linear Search\n2.Binary Search\nEnter your Choice:";
+                       cin>>ch;
+                       switch(ch){
+                           case 1:
+                                  Linear(a,n);
+                                  break;
+                           case 2:
+                                  Binary(a,n);
+                                  break;
+                           default:cout<<"Wrong Choice:"<<endl;
+                       }
+                       cout<<"if you want to continue Searching then ,print 1:";
+                       cin>>k;
+                   }while(k==1);
+                   break;
+            case 2: cout<<"Sorting"<<endl;
+                    Sorting(a,n);
+                    break;
+            default:cout<<"Wrong Choice:"<<endl;
+            
+        }
+        cout<<"if you want to continue then ,print 1:";
+        cin>>k;
+    }while(k==1);
+    return 0;
+}
