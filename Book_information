@@ -1,0 +1,79 @@
+#include <iostream>
+using namespace std;
+struct Book{
+    string name;
+    string author;
+    float price;
+};
+int main() {
+    Book a[20],b[20];
+    int i, j, temp, n,c=0;
+
+    cout << "Enter no of Books: ";
+    cin >> n;
+
+   
+    for (i = 0; i < n; i++) {
+         cout << "Enter the name of Books: ";
+        cin >> a[i].name;
+         cout << "Enter the author of Books: ";
+        cin >> a[i].author;
+         cout << "Enter the price of Books: ";
+        cin >> a[i].price;
+    }
+
+   
+    for (i = 0; i < n; i++) {
+        cout << "Name :" <<a[i].name<<endl;
+        cout << "Author :" <<a[i].author<<endl;
+        cout << "Price :" <<a[i].price<<endl;
+    }
+
+
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if (a[j].price > a[j + 1].price) {
+                temp = a[j].price;
+                a[j].price = a[j + 1].price;
+                a[j + 1].price = temp;
+            }
+        }
+    }
+
+    cout << "Sorted Books by their Prices are:" << endl;
+    for (i = 0; i < n; i++) {
+       cout << "Name :" <<a[i].name<<"\tAuthor :" <<a[i].author<< "\tPrice :" <<a[i].price<<endl;
+    }
+    
+    
+    
+    
+    int new_array = 0;
+    for (i = 0; i < n; i++) {
+        if ( a[i].price != a[i - 1].price) {
+            a[new_array].price = a[i].price;
+            new_array++;
+        }
+    }
+
+    cout << "Unique Book Prices are:" << endl;
+    for (i = 0; i < new_array; i++) {
+        cout << "Name :" <<a[i].name<<"\tAuthor :" <<a[i].author<< "\tPrice :" <<a[i].price<<endl;
+    }
+
+    
+    
+     cout<<"Book prices which are less than 500 is :\n";
+    for(i=0;i<n;i++){
+        if(a[i].price<500){
+            b[i].price=a[i].price;
+            c++;
+        }
+    }
+     for(i=0;i<c;i++){
+   cout << "Name :" <<a[i].name<<"\tAuthor :" <<a[i].author<< "\tPrice :" <<a[i].price<<endl;
+    }
+    
+
+    return 0;
+}
